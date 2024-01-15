@@ -1,0 +1,47 @@
+<div class="editor-page">
+    <div class="conatiner page">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-xs-12">
+                <mc-backend-error-message *ngIf="errors" [backendErrors]="errors"></mc-backend-error-message>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <fieldset>
+                        <fieldset class="form-group">
+                            <input
+                                class="form-control form-control-lg" 
+                                type="text" 
+                                formControlName="title" 
+                                placeholder="Article Title">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input
+                                class="form-control form-control-lg" 
+                                type="text" 
+                                formControlName="description" 
+                                placeholder="What is this article about">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <textarea
+                                class="form-control form-control-lg"
+                                rows="8"
+                                formControlName="body" 
+                                placeholder="Write your article (in markdown)">
+                            </textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <input
+                                class="form-control form-control-lg" 
+                                type="text" 
+                                formControlName="tagList" 
+                                placeholder="Enter Tags">
+                        </fieldset>
+                        <fieldset>
+                            <button type="submit" class="btn btn-lg pull-xs btn-primary" [disabled]="form.invalid || isSubmitting">
+                                Publish Article
+                            </button>
+                        </fieldset>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
