@@ -116,7 +116,7 @@ export const updateCurrentUserEffect = createEffect(
       switchMap(({currentUserRequest}) => {
         return authService.updateCurrentUser(currentUserRequest).pipe(
           map((currentUser: CurrentUserInterface) => {
-            return authActions.getCurrentUserSuccess({currentUser})
+            return authActions.updateCurrentUserSuccess({currentUser})
           }),
           catchError((errorResponse: HttpErrorResponse) => {
             return of(
@@ -128,6 +128,19 @@ export const updateCurrentUserEffect = createEffect(
     )
   },
   {functional: true}
+)
+
+export const logoutEffect = createEffect(
+  (actions$ = inject(Actions), router = inject(Router), persistanceService = inject(PersistanceService)) => {
+    return actions$.pipe(
+      ofType(authActions.logout),
+      tap(()=> {
+        persistanceService.set('accessToken', '')
+        router.navigateByUrl('/')
+      })
+    )
+  },
+  {functional: true, dispatch: false}
 )
 
 

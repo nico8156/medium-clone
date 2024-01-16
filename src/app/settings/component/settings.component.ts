@@ -78,6 +78,7 @@ export class SettingsComponent implements OnInit, OnDestroy{
         this.store.dispatch(authActions.updateCurrentUser({currentUserRequest}))
     }
     logOut(){
+        this.store.dispatch(authActions.logout())
         console.log('log Out')
     }
     
